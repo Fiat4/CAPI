@@ -4,7 +4,7 @@
 
 Проект по сравнению моделей классификации изображений и развертыванию лучшей модели в виде API с пользовательским интерфейсом.
 
-**Датасет:** [Cat Dog Snake Dataset](https://www.kaggle.com/datasets/alvarogarciav/dataset-classifier-cat-dog-snake) — 3000 изображений (по 1000 на класс: кошки, собаки, змеи).
+**Датасет:** [Cat Dog Snake Dataset](https://www.kaggle.com/datasets/alvarogarciav/dataset-classifier-cat-dog-snake) - 3000 изображений (по 1000 на класс: кошки, собаки, змеи).
 
 ## Сравниваемые модели
 
