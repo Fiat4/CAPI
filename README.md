@@ -41,9 +41,9 @@
 
 ## Ссылки
 
-- **Публичный API:** https://classification-api-ipqh.onrender.com/predict
-- **Streamlit-интерфейс:** https://classification-api-mwbrcnpq9nyoe92cmfppww.streamlit.app/
-- **Документация API (Swagger):** https://classification-api-ipqh.onrender.com/docs
+- **Публичный API:** https://capi-api-o5nq.onrender.com
+- **Streamlit-интерфейс:** https://vdzibn68ruzy2nfd6sknlb.streamlit.app/#klassifikator-izobrazheniy-cifar-10
+- **Документация API (Swagger):** https://capi-api-o5nq.onrender.com/docs
 
 ## Локальное развертывание
 
