@@ -70,7 +70,7 @@ streamlit run app.py
 ```python
 import requests
 
-url = "[https://classification-api-ipqh.onrender.com](https://capi-api-o5nq.onrender.com)/predict"
+url = "https://capi-api-o5nq.onrender.com/predict"
 files = {"file": open("cat.jpg", "rb")}
 response = requests.post(url, files=files)
 print(response.json())
@@ -79,7 +79,7 @@ print(response.json())
 ### cURL
 
 ```bash
-curl -X POST "[https://classification-api-ipqh.onrender.com](https://capi-api-o5nq.onrender.com)/predict" \
+curl -X POST "https://capi-api-o5nq.onrender.com/predict" \
      -F "file=@cat.jpg"
 ```
 
