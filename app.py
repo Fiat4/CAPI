@@ -1,10 +1,6 @@
 import streamlit as st
 import requests
 import plotly.graph_objects as go
-import numpy as np
-from PIL import Image
-import io
-from streamlit_drawable_canvas import st_canvas
 
 st.set_page_config(
     page_title="CIFAR-10 Classifier",
@@ -121,11 +117,6 @@ PASTEL_CSS = """
         margin-bottom: 2rem;
     }
 
-    [data-testid="stTabs"] button {
-        border-radius: 16px 16px 0 0 !important;
-        font-weight: 600;
-    }
-
     [data-testid="stFileUploader"] section {
         background: rgba(255, 255, 255, 0.72);
         border: 1px dashed #c8c4ff;
@@ -183,7 +174,7 @@ with st.sidebar:
 
 st.title("Классификатор изображений CIFAR-10")
 st.markdown(
-    '<p class="app-subtitle">Загрузите фото или нарисуйте объект — модель определит класс</p>',
+    '<p class="app-subtitle">Загрузите фото — модель определит класс</p>',
     unsafe_allow_html=True,
 )
 
@@ -234,39 +225,12 @@ def show_result(result: dict):
     st.plotly_chart(fig, use_container_width=True)
 
 
-tab_upload, tab_canvas = st.tabs(["📷 Загрузить изображение", "✏️ Нарисовать на холсте"])
-
-with tab_upload:
-    uploaded_file = st.file_uploader(
-        "Выберите изображение", type=["jpg", "jpeg", "png", "bmp", "webp"]
-    )
-    if uploaded_file is not None:
-        st.image(uploaded_file, caption="Загруженное изображение", width=300)
-        if st.button("Классифицировать", type="primary", key="btn_upload"):
-            result = send_to_api(uploaded_file.getvalue())
-            if result:
-                show_result(result)
-
-with tab_canvas:
-    st.markdown("Нарисуйте изображение на холсте и нажмите **Классифицировать**.")
-    canvas_result = st_canvas(
-        fill_color="rgba(255, 255, 255, 1)",
-        stroke_width=st.slider("Толщина кисти", 1, 30, 10),
-        stroke_color=st.color_picker("Цвет кисти", "#635bff"),
-        background_color="#FFFFFF",
-        height=300,
-        width=300,
-        drawing_mode="freedraw",
-        key="canvas",
-    )
-    if st.button("Классифицировать рисунок", type="primary", key="btn_canvas"):
-        if canvas_result.image_data is not None:
-            img_array = canvas_result.image_data.astype(np.uint8)
-            pil_img = Image.fromarray(img_array).convert("RGB")
-            buf = io.BytesIO()
-            pil_img.save(buf, format="PNG")
-            result = send_to_api(buf.getvalue())
-            if result:
-                show_result(result)
-        else:
-            st.warning("Сначала что-нибудь нарисуйте на холсте.")
+uploaded_file = st.file_uploader(
+    "Выберите изображение", type=["jpg", "jpeg", "png", "bmp", "webp"]
+)
+if uploaded_file is not None:
+    st.image(uploaded_file, caption="Загруженное изображение", width=300)
+    if st.button("Классифицировать", type="primary"):
+        result = send_to_api(uploaded_file.getvalue())
+        if result:
+            show_result(result)
